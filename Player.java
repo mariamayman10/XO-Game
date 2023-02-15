@@ -1,18 +1,16 @@
 class Player{
-    protected
-    String name;
-    char symbol;
-    public
-    Player(String name, char symbol){
+    protected String name;
+    protected char symbol;
+    public Player(String name, char symbol){
 
     }
-    void get_move(int x, int y){
+    public void get_move(int x, int y){
 
     }
-    char getSymbol(){
+    public char getSymbol(){
         return symbol;
     }
-    String getName(){
+    public String getName(){
         return name;
     }
 }

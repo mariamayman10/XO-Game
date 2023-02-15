@@ -1,13 +1,11 @@
 class Game {
-private
-    Board board;
-    Player[] players;
-    int turn;
-public
-    Game(Board board, Player[] players){
+    private Board board;
+    private Player[] players;
+    private int turn;
+    public Game(Board board, Player[] players){
 
     }
-    void play_game(){
+    public void play_game(){
 
     }
 

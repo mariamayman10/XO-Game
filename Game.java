@@ -30,15 +30,39 @@ class Game extends Board{
         Player p2 = new Player(n2, s2);
         players[1] = p2;
     }
+    //////////////////////////////////Aya
+     public boolean Move(int x,int y,char i){
+        if(grid[x][y]==' ' &&  x<3 && y<3){
+            update_board(x,y,i);
+            return true;
+        }
+        return false;
+    }
     public void play_game(){
+        Scanner in = new Scanner(System.in);
         while(!is_draw() && !is_winner()){
             for (Player i:players) {
-                //take x, y
-                //call get move for i
-                //call is winner
-                //call is draw
+                int x,y;
+                System.out.println("Enter where you want to place your symbol :");
+                display_board();
+                x=in.nextInt()-1;
+                y=in.nextInt()-1;
+                while (!Move(x,y,i.Symbol)){
+                    System.out.println("Enter a valid place :");
+                    display_board();
+                    x=in.nextInt()-1;
+                    y=in.nextInt()-1;
+                }
+                if(is_winner()){
+                    System.out.println("Player "+i.Name+" win!");
+                    break;
+                }
+                if(is_draw()){
+                    System.out.println("Draw!");
+                    break;
+                }
+
             }
         }
     }
-
 }

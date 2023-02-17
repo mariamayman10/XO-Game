@@ -31,27 +31,30 @@ class Game extends Board{
         players[1] = p2;
     }
     //////////////////////////////////Aya
-     public boolean Move(int x,int y,char i){
-        if(grid[x][y]==' ' &&  x<3 && y<3){
-            update_board(x,y,i);
-            return true;
-        }
-        return false;
-    }
+
     public void play_game(){
         Scanner in = new Scanner(System.in);
         while(!is_draw() && !is_winner()){
             for (Player i:players) {
                 int x,y;
-                System.out.println("Enter where you want to place your symbol :");
+                System.out.println(i.Name + ", Enter where you want to place your symbol '" + i.getSymbol() + "':");
                 display_board();
-                x=in.nextInt()-1;
-                y=in.nextInt()-1;
-                while (!Move(x,y,i.Symbol)){
-                    System.out.println("Enter a valid place :");
+                System.out.print("Enter x: ");
+                x=in.nextInt();
+                System.out.print("\nEnter y: ");
+                y=in.nextInt();
+                System.out.print('\n');
+                boolean r = i.get_move(x, y);
+                while (!r){
+                    System.out.println("Enter a valid place!");
+                    System.out.println(i.Name + ", Enter where you want to place your symbol '" + i.getSymbol() + "':");
                     display_board();
-                    x=in.nextInt()-1;
-                    y=in.nextInt()-1;
+                    System.out.print("Enter x: ");
+                    x=in.nextInt();
+                    System.out.print("\n" + "Enter y: ");
+                    y=in.nextInt();
+                    System.out.print('\n');
+                    r = i.get_move(x, y);
                 }
                 if(is_winner()){
                     System.out.println("Player "+i.Name+" win!");

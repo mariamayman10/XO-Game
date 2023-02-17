@@ -1,5 +1,5 @@
 class Board{
-    protected char[][] grid;
+    protected static char[][] grid;
     public Board(){
         grid = new char[][]{{' ', ' ', ' '},
                 {' ', ' ', ' '},
@@ -23,62 +23,38 @@ class Board{
     public boolean is_winner()
     {
         //row win
-        for (int i = 0; i < 2; i++)
-        {
-            for (int j = 0; j < 2; j++)
-            {
-
-                if((grid[i][j] == grid[i][j+1])&&(grid[i][j]!=' '))
-                {
-                    if (j!=1)
-                        continue;
-                    else if (j==1)
-                    {
-                        return true;
-                    }
-                }
-
+        for (int i = 0; i <= 2; i++) {
+            if(grid[i][0] == grid[i][1] && grid[i][1] == grid[i][2] && grid[i][0] != ' '){
+                return true;
             }
         }
         //col win
-        int j=0;
-        for (int i = 0; i < 2; i++)
-        {
-            if ((grid[i][j]==grid[i+1][j])&&(grid[i][j]!=' '))
-            {
-                if (i!=1)
-                {
-                    j++;
-                    continue;
-                }
-                else if (i==1)
-                    return true;
+        for (int j = 0; j <= 2; j++) {
+            if (grid[0][j] == grid[1][j] && grid[0][j] == grid[2][j] && grid[2][j] != ' ') {
+                return true;
             }
         }
         //diagonal win
-        if (((grid[0][0]==grid[1][1])&&(grid[0][0]==grid[2][2]))||(grid[0][2]==grid[1][1])&&(grid[0][2]==grid[2][0]))
-        {
-            if (grid[1][1]!=' ')
+        if (((grid[0][0]==grid[1][1]) && (grid[0][0]==grid[2][2]) || (grid[0][2]==grid[1][1]) && (grid[0][2]==grid[2][0]))){
+            if (grid[1][1] != ' ')
                 return true;
         }
         return false;
     }
     public boolean is_draw()
     {
-        boolean result=is_winner();
-        if (result==false)
+        for (int i=0;i<3;i++)
         {
-            for (int i=0;i<3;i++)
+            for (int j=0;j<3;j++)
             {
-                for (int j=0;j<3;j++)
+                if (grid[i][j] != ' ')
                 {
-                    if (grid[i][j]!=' ')
-                    {
-                        if ((i==2)&&(j==2))
-                        {
-                            return false;
-                        }
+                    if(i == 2 && j == 2){
+                        return true;
                     }
+                }
+                else{
+                    return false;
                 }
             }
         }

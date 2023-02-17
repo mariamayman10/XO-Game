@@ -7,24 +7,17 @@ class Player extends Board{
         Name = name;
         Symbol = symbol;
     }
-    public void get_move(int x, int y){
-        Scanner in = new Scanner(System.in);
-        while(x > 2 || y > 2){
-            System.out.println("Invalid Coordinate");
-            System.out.print("Enter x: ");
-            x = in.nextInt();
-            System.out.print("\nEnter y: ");
-            y = in.nextInt();
+
+    public boolean get_move(int x, int y){
+        if (x<3 && y<3){
+            if(grid[x][y] == ' '){
+                update_board(x,y,this.getSymbol());
+                return true;
+            }
         }
-        if(grid[x][y] != ' '){
-            System.out.println("Invalid Coordinate");
-            System.out.print("Enter x: ");
-            x = in.nextInt();
-            System.out.print("\nEnter y: ");
-            y = in.nextInt();
-        }
-        update_board(x, y, this.Symbol);
+        return false;
     }
+
     public char getSymbol(){
         return Symbol;
     }

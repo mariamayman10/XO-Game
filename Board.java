@@ -28,7 +28,7 @@ class Board{
             for (int j = 0; j < 2; j++)
             {
 
-                if((grid[i][j] == grid[i][j+1])&&(grid[i][j]!='-'))
+                if((grid[i][j] == grid[i][j+1])&&(grid[i][j]!=' '))
                 {
                     if (j!=1)
                         continue;
@@ -44,7 +44,7 @@ class Board{
         int j=0;
         for (int i = 0; i < 2; i++)
         {
-            if ((grid[i][j]==grid[i+1][j])&&(grid[i][j]!='-'))
+            if ((grid[i][j]==grid[i+1][j])&&(grid[i][j]!=' '))
             {
                 if (i!=1)
                 {
@@ -58,7 +58,7 @@ class Board{
         //diagonal win
         if (((grid[0][0]==grid[1][1])&&(grid[0][0]==grid[2][2]))||(grid[0][2]==grid[1][1])&&(grid[0][2]==grid[2][0]))
         {
-            if (grid[1][1]!='-')
+            if (grid[1][1]!=' ')
                 return true;
         }
         return false;
@@ -67,7 +67,21 @@ class Board{
     {
         boolean result=is_winner();
         if (result==false)
-            return false;
+        {
+            for (int i=0;i<3;i++)
+            {
+                for (int j=0;j<3;j++)
+                {
+                    if (grid[i][j]!=' ')
+                    {
+                        if ((i==2)&&(j==2))
+                        {
+                            return false;
+                        }
+                    }
+                }
+            }
+        }
         return true;
     }
 }
